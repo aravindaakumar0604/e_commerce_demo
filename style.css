@@ -1,0 +1,21 @@
+*{
+    margin-bottom:0px;
+    padding:0px;
+    font-size:25px
+}
+body{
+    margin:0px 0px 0px 0px;
+    background: linear-gradient(to right, #888888, #dddddd);
+    background-attachment:scroll;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    min-height:1000px;
+}
+.jumbotron{
+    background-color: rgba(0,0,40,0.3);
+    color:black;
+}
+.error{
+    color:red;
+}

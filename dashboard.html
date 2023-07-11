@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bar chart</title>
+</head>
+<body>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<center>
+    <button id="ai"></button>
+    <button id="ml">ML</button>
+    <button id="dsa">DSA</button>
+    <button id="java">JAVA</button>
+    <button id="androis">ANDROID</button>
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <svg id="one" class="bar-chart"></svg>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <svg id="two" class="bar-chart"></svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-6">
+    </div>
+    <div class="col-6">
+    </div>
+
+  </div>
+  
+
+</center>
+<script>
+
+var dataset=[0,0,0,0,0];
+document.getElementById('ai').addEventListener('click',function(){
+    dataset[0]+=5;
+    c();
+},true);
+document.getElementById('ml').addEventListener('click',function(){
+    dataset[1]+=5;
+    c();
+});
+document.getElementById('dsa').addEventListener('click',function(){
+    dataset[2]+=5;
+    c();
+});
+document.getElementById('java').addEventListener('click',function(){
+    dataset[3]+=5;
+    c();
+});
+document.getElementById('androis').addEventListener('click',function(){
+    dataset[4]+=5;
+    c();
+});
+function c(){
+var svgWidth=400,svgHeight=300,barPadding=5;
+var barWidth=svgWidth/dataset.length;
+var svg = d3.select('svg')
+.attr('width',svgWidth)
+.attr('height',svgHeight);
+var rects=svg.selectAll('rect')
+.data(dataset);
+rects.enter()
+.append('rect')
+.merge(rects)
+.attr('y',function(d){
+return svgHeight-d;
+})
+.attr('height',function(d){
+return d;
+})
+.attr('width',barWidth-barPadding)
+.attr('transform',function(d,i){
+var translate=[barWidth*i,0];
+return 'translate('+translate+')';});
+var texts=svg.selectAll('text')
+.data(dataset);
+
+texts.enter()
+.append('text')
+.merge(texts)
+.attr('x',function(d,i){
+return barWidth*i+25;
+})
+.attr('y',function(d,i){
+return svgHeight-d-2;
+})
+.text(function(d){return d;})
+.attr('fill','red');
+}
+</script>
+</body>
+</html>
